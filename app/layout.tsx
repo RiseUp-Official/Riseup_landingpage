@@ -11,13 +11,14 @@ const poppins = Poppins({
 export const metadata: Metadata = {
   title: "RiseUp - Transform Your Life in 66 Days",
   description:
-    "Build habits, stay motivated, track progress, and level up every day with RiseUp. Your ultimate habit-building and productivity app.",
+    "Join the waitlist for RiseUp - the #1 self-improvement app. Build habits, stay motivated, and transform your life in 66 days.",
   keywords: [
     "habits",
     "productivity",
     "self-improvement",
     "mindfulness",
     "habit tracker",
+    "66 days challenge",
   ],
 };
 

@@ -8,9 +8,9 @@ import { useRef } from "react";
 const steps = [
   {
     icon: Download,
-    title: "Download RiseUp",
+    title: "Join the Waitlist",
     description:
-      "Get started in seconds with our easy-to-use mobile app available on iOS and Android.",
+      "Sign up with your email to get exclusive early access when we launch.",
     color: "from-orange-400 to-pink-400",
   },
   {
@@ -43,7 +43,7 @@ export default function HowItWorks() {
   return (
     <section
       id="how-it-works"
-      className="py-24 bg-gradient-to-br from-gray-50 to-purple-50"
+      className="py-24 bg-gradient-to-b from-black via-gray-900 to-black"
     >
       <div className="container mx-auto px-6">
         <motion.div
@@ -54,12 +54,12 @@ export default function HowItWorks() {
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
-            <span className="text-gray-900">How It</span>{" "}
-            <span className="bg-gradient-to-r from-orange-500 via-pink-500 to-purple-600 bg-clip-text text-transparent">
+            <span className="text-white">How It</span>{" "}
+            <span className="bg-gradient-to-r from-orange-400 via-pink-400 to-purple-400 bg-clip-text text-transparent">
               Works
             </span>
           </h2>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+          <p className="text-xl text-gray-400 max-w-2xl mx-auto">
             Transform your life in just four simple steps
           </p>
         </motion.div>
@@ -91,10 +91,10 @@ export default function HowItWorks() {
 
                 {/* Content */}
                 <div className="flex-1 text-center md:text-left">
-                  <h3 className="text-2xl font-bold text-gray-900 mb-2">
+                  <h3 className="text-2xl font-bold text-white mb-2">
                     {step.title}
                   </h3>
-                  <p className="text-gray-600 text-lg">{step.description}</p>
+                  <p className="text-gray-400 text-lg">{step.description}</p>
                 </div>
               </div>
 
@@ -104,7 +104,7 @@ export default function HowItWorks() {
                   initial={{ scaleY: 0 }}
                   animate={isInView ? { scaleY: 1 } : {}}
                   transition={{ duration: 0.5, delay: index * 0.2 + 0.3 }}
-                  className="hidden md:block absolute left-12 top-24 w-0.5 h-12 bg-gradient-to-b from-gray-300 to-transparent origin-top"
+                  className="hidden md:block absolute left-12 top-24 w-0.5 h-12 bg-gradient-to-b from-gray-600 to-transparent origin-top"
                 />
               )}
             </motion.div>
@@ -118,13 +118,14 @@ export default function HowItWorks() {
           transition={{ duration: 0.6, delay: 0.8 }}
           className="text-center mt-16"
         >
-          <motion.button
+          <motion.a
+            href="#waitlist"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="px-10 py-4 bg-gradient-to-r from-orange-500 via-pink-500 to-purple-600 text-white rounded-full font-semibold text-lg shadow-2xl hover:shadow-3xl transition-shadow"
+            className="inline-block px-10 py-4 bg-white text-black rounded-full font-semibold text-lg shadow-2xl hover:bg-gray-100 transition-all"
           >
-            Get Started Today
-          </motion.button>
+            Join Waitlist
+          </motion.a>
         </motion.div>
       </div>
     </section>

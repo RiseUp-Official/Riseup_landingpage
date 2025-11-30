@@ -65,7 +65,7 @@ export default function Testimonials() {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="testimonials" className="py-24 bg-white overflow-hidden">
+    <section id="testimonials" className="py-24 bg-black overflow-hidden">
       <div className="container mx-auto px-6">
         <motion.div
           ref={ref}
@@ -75,12 +75,12 @@ export default function Testimonials() {
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
-            <span className="text-gray-900">What Our</span>{" "}
-            <span className="bg-linear-to-r from-orange-500 via-pink-500 to-purple-600 bg-clip-text text-transparent">
+            <span className="text-white">What Our</span>{" "}
+            <span className="bg-gradient-to-r from-orange-400 via-pink-400 to-purple-400 bg-clip-text text-transparent">
               Users Say
             </span>
           </h2>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+          <p className="text-xl text-gray-400 max-w-2xl mx-auto">
             Join thousands of people transforming their lives with RiseUp
           </p>
         </motion.div>
@@ -93,11 +93,11 @@ export default function Testimonials() {
               animate={isInView ? { opacity: 1, y: 0, scale: 1 } : {}}
               transition={{ duration: 0.5, delay: index * 0.1 }}
               whileHover={{ y: -10, scale: 1.02 }}
-              className="relative bg-gradient-to-br from-white to-gray-50 rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100"
+              className="relative bg-white/5 backdrop-blur-sm rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 border border-white/10 hover:border-white/20"
             >
               {/* Quote Icon */}
               <div className="absolute top-6 right-6 opacity-10">
-                <Quote size={48} className="text-purple-600" />
+                <Quote size={48} className="text-purple-400" />
               </div>
 
               {/* Rating */}
@@ -112,7 +112,7 @@ export default function Testimonials() {
               </div>
 
               {/* Testimonial Text */}
-              <p className="text-gray-700 mb-6 leading-relaxed relative z-10">
+              <p className="text-gray-300 mb-6 leading-relaxed relative z-10">
                 "{testimonial.text}"
               </p>
 
@@ -122,15 +122,15 @@ export default function Testimonials() {
                   <testimonial.icon className="text-white" size={24} />
                 </div>
                 <div>
-                  <h4 className="font-bold text-gray-900">
+                  <h4 className="font-bold text-white">
                     {testimonial.name}
                   </h4>
-                  <p className="text-sm text-gray-600">{testimonial.role}</p>
+                  <p className="text-sm text-gray-400">{testimonial.role}</p>
                 </div>
               </div>
 
               {/* Decorative Gradient */}
-              <div className="absolute bottom-0 left-0 right-0 h-1 bg-linear-to-r from-orange-400 via-pink-400 to-purple-400 rounded-b-2xl" />
+              <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-orange-400 via-pink-400 to-purple-400 rounded-b-2xl" />
             </motion.div>
           ))}
         </div>
@@ -140,13 +140,12 @@ export default function Testimonials() {
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.8 }}
-          className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-8"
+          className="mt-16 grid grid-cols-2 md:grid-cols-3 gap-8 max-w-3xl mx-auto"
         >
           {[
-            { value: "10k+", label: "Active Users" },
-            { value: "4.9/5", label: "App Rating" },
-            { value: "1M+", label: "Habits Tracked" },
+            { value: "10k+", label: "Waitlist Signups" },
             { value: "66", label: "Day Challenge" },
+            { value: "100%", label: "Science-Backed" },
           ].map((stat, index) => (
             <motion.div
               key={stat.label}
@@ -155,10 +154,10 @@ export default function Testimonials() {
               transition={{ duration: 0.5, delay: 0.9 + index * 0.1 }}
               className="text-center"
             >
-              <div className="text-4xl md:text-5xl font-bold bg-linear-to-r from-orange-500 via-pink-500 to-purple-600 bg-clip-text text-transparent mb-2">
+              <div className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-orange-400 via-pink-400 to-purple-400 bg-clip-text text-transparent mb-2">
                 {stat.value}
               </div>
-              <div className="text-gray-600 font-medium">{stat.label}</div>
+              <div className="text-gray-400 font-medium">{stat.label}</div>
             </motion.div>
           ))}
         </motion.div>

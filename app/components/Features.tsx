@@ -55,7 +55,7 @@ export default function Features() {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="features" className="py-24 bg-white">
+    <section id="features" className="py-24 bg-black">
       <div className="container mx-auto px-6">
         <motion.div
           ref={ref}
@@ -65,12 +65,12 @@ export default function Features() {
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
-            <span className="bg-gradient-to-r from-orange-500 via-pink-500 to-purple-600 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-orange-400 via-pink-400 to-purple-400 bg-clip-text text-transparent">
               Everything You Need
             </span>{" "}
-            <span className="text-gray-900">to Succeed</span>
+            <span className="text-white">to Succeed</span>
           </h2>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+          <p className="text-xl text-gray-400 max-w-2xl mx-auto">
             Powerful features designed to help you build lasting habits and
             achieve your goals.
           </p>
@@ -84,11 +84,11 @@ export default function Features() {
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: index * 0.1 }}
               whileHover={{ y: -10, scale: 1.02 }}
-              className="group relative bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100"
+              className="group relative bg-white/5 backdrop-blur-sm rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 border border-white/10 hover:border-white/20"
             >
               {/* Gradient Background on Hover */}
               <div
-                className={`absolute inset-0 bg-gradient-to-br ${feature.gradient} opacity-0 group-hover:opacity-5 rounded-2xl transition-opacity duration-300`}
+                className={`absolute inset-0 bg-gradient-to-br ${feature.gradient} opacity-0 group-hover:opacity-10 rounded-2xl transition-opacity duration-300`}
               />
 
               <div className="relative z-10">
@@ -100,10 +100,10 @@ export default function Features() {
                   <feature.icon className="text-white" size={32} />
                 </motion.div>
 
-                <h3 className="text-2xl font-bold text-gray-900 mb-3">
+                <h3 className="text-2xl font-bold text-white mb-3">
                   {feature.title}
                 </h3>
-                <p className="text-gray-600 leading-relaxed">
+                <p className="text-gray-400 leading-relaxed">
                   {feature.description}
                 </p>
               </div>
