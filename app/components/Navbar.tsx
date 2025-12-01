@@ -4,8 +4,11 @@ import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 export default function Navbar() {
+  const pathname = usePathname();
+  const isHomePage = pathname === "/";
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -18,8 +21,8 @@ export default function Navbar() {
   }, []);
 
   const navLinks = [
-    { href: "#home", label: "Home" },
-    { href: "#blog", label: "Blog" },
+    { href: "/", label: "Home" },
+    { href: "/#blog", label: "Blog" },
   ];
 
   return (
@@ -35,7 +38,7 @@ export default function Navbar() {
       <div className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <Link href="#home">
+          <Link href="/">
             <motion.div
               whileHover={{ scale: 1.05 }}
               className="flex items-center gap-2 cursor-pointer"
@@ -59,24 +62,42 @@ export default function Navbar() {
 
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center space-x-8">
-            {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="text-gray-300 hover:text-white transition-colors font-medium"
-              >
-                {link.label}
+            {navLinks.map((link) => {
+              const isBlogLink = link.href === "/#blog";
+              const shouldDisable = isBlogLink && !isHomePage;
+
+              return shouldDisable ? (
+                <span
+                  key={link.href}
+                  className="text-gray-300 font-medium cursor-default"
+                >
+                  {link.label}
+                </span>
+              ) : (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className="text-gray-300 hover:text-white transition-colors font-medium"
+                >
+                  {link.label}
+                </Link>
+              );
+            })}
+            {isHomePage ? (
+              <Link href="/#waitlist">
+                <motion.div
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="px-6 py-2.5 bg-white text-black rounded-full font-semibold hover:bg-gray-100 transition-colors"
+                >
+                  Join Waitlist
+                </motion.div>
               </Link>
-            ))}
-            <Link href="#waitlist">
-              <motion.div
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="px-6 py-2.5 bg-white text-black rounded-full font-semibold hover:bg-gray-100 transition-colors"
-              >
+            ) : (
+              <div className="px-6 py-2.5 bg-gray-600 text-gray-400 rounded-full font-semibold cursor-default">
                 Join Waitlist
-              </motion.div>
-            </Link>
+              </div>
+            )}
           </div>
 
           {/* Mobile Menu Button */}
@@ -97,23 +118,41 @@ export default function Navbar() {
               exit={{ opacity: 0, height: 0 }}
               className="md:hidden mt-4 pb-4"
             >
-              {navLinks.map((link) => (
+              {navLinks.map((link) => {
+                const isBlogLink = link.href === "/#blog";
+                const shouldDisable = isBlogLink && !isHomePage;
+
+                return shouldDisable ? (
+                  <span
+                    key={link.href}
+                    className="block py-2 text-gray-300 cursor-default"
+                  >
+                    {link.label}
+                  </span>
+                ) : (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="block py-2 text-gray-300 hover:text-white transition-colors"
+                  >
+                    {link.label}
+                  </Link>
+                );
+              })}
+              {isHomePage ? (
                 <Link
-                  key={link.href}
-                  href={link.href}
+                  href="/#waitlist"
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="block py-2 text-gray-300 hover:text-white transition-colors"
+                  className="block mt-4 px-6 py-2.5 bg-white text-black rounded-full font-semibold text-center hover:bg-gray-100 transition-colors"
                 >
-                  {link.label}
+                  Join Waitlist
                 </Link>
-              ))}
-              <Link
-                href="#waitlist"
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="block mt-4 px-6 py-2.5 bg-white text-black rounded-full font-semibold text-center hover:bg-gray-100 transition-colors"
-              >
-                Join Waitlist
-              </Link>
+              ) : (
+                <div className="block mt-4 px-6 py-2.5 bg-gray-600 text-gray-400 rounded-full font-semibold text-center cursor-default">
+                  Join Waitlist
+                </div>
+              )}
             </motion.div>
           )}
         </AnimatePresence>

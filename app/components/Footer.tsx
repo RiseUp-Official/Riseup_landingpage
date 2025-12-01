@@ -2,18 +2,19 @@
 
 import { motion } from "framer-motion";
 import {
-  Facebook,
-  Twitter,
   Instagram,
-  Linkedin,
   Mail,
   Send,
 } from "lucide-react";
+import { FaTiktok } from "react-icons/fa";
 import { useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { addToWaitlist } from "@/lib/waitlist";
 
 export default function Footer() {
+  const pathname = usePathname();
+  const isHomePage = pathname === "/";
   const [email, setEmail] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [message, setMessage] = useState("");
@@ -39,7 +40,7 @@ export default function Footer() {
   return (
     <footer className="bg-black border-t border-gray-800 text-white pt-16 pb-8">
       <div className="container mx-auto px-6">
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-12 mb-12">
           {/* Brand */}
           <div>
             <motion.div
@@ -54,10 +55,8 @@ export default function Footer() {
             </p>
             <div className="flex gap-4">
               {[
-                { icon: Facebook, href: "#" },
-                { icon: Twitter, href: "#" },
                 { icon: Instagram, href: "#" },
-                { icon: Linkedin, href: "#" },
+                { icon: FaTiktok, href: "#" },
               ].map((social, index) => (
                 <Link key={index} href={social.href}>
                   <motion.div
@@ -77,38 +76,25 @@ export default function Footer() {
             <h3 className="text-lg font-bold mb-4">Product</h3>
             <ul className="space-y-3">
               {[
-                { label: "Features", href: "#features" },
-                { label: "How It Works", href: "#how-it-works" },
-                { label: "Join Waitlist", href: "#waitlist" },
+                { label: "Features", href: "/#features" },
+                { label: "How It Works", href: "/#how-it-works" },
+                { label: "Join Waitlist", href: "/#waitlist" },
               ].map((link) => (
                 <li key={link.label}>
-                  <Link
-                    href={link.href}
-                    className="text-gray-400 hover:text-white transition-colors"
-                  >
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Company */}
-          <div>
-            <h3 className="text-lg font-bold mb-4">Company</h3>
-            <ul className="space-y-3">
-              {["About Us", "Blog", "Careers", "Contact", "Press Kit"].map(
-                (link) => (
-                  <li key={link}>
+                  {isHomePage ? (
                     <Link
-                      href="#"
+                      href={link.href}
                       className="text-gray-400 hover:text-white transition-colors"
                     >
-                      {link}
+                      {link.label}
                     </Link>
-                  </li>
-                )
-              )}
+                  ) : (
+                    <span className="text-gray-400 cursor-default">
+                      {link.label}
+                    </span>
+                  )}
+                </li>
+              ))}
             </ul>
           </div>
 
@@ -157,22 +143,22 @@ export default function Footer() {
             </p>
             <div className="flex gap-6 text-sm">
               <Link
-                href="#"
+                href="/privacy"
                 className="text-gray-400 hover:text-white transition-colors"
               >
                 Privacy Policy
               </Link>
               <Link
-                href="#"
+                href="/terms"
                 className="text-gray-400 hover:text-white transition-colors"
               >
                 Terms of Service
               </Link>
               <Link
-                href="#"
+                href="/support"
                 className="text-gray-400 hover:text-white transition-colors"
               >
-                Cookie Policy
+                Support
               </Link>
             </div>
           </div>
